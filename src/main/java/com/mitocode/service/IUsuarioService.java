@@ -2,7 +2,7 @@ package com.mitocode.service;
 
 import com.mitocode.model.Usuario;
 
-public interface IUsuarioService{
+public interface IUsuarioService extends ICRUD<Usuario, Integer>{
 
 	Usuario registrarTransaccional(Usuario us);
 }

@@ -2,6 +2,7 @@ package com.mitocode.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -59,6 +60,32 @@ public class UsuarioServiceImpl implements UserDetailsService ,IUsuarioService {
 		UserDetails userDetails = new User(user.getNombre(), user.getClave(), roles);
 		
 		return userDetails;
+	}
+
+	@Override
+	public Usuario registrar(Usuario rol) {
+		return userRepo.save(rol);
+	}
+
+	@Override
+	public Usuario modificar(Usuario rol) {
+		return userRepo.save(rol);
+	}
+
+	@Override
+	public List<Usuario> listar() {
+		return userRepo.findAll();
+	}
+
+	@Override
+	public Usuario listarPorId(Integer id) { 
+		Optional<Usuario> op = userRepo.findById(id);
+		return op.isPresent() ? op.get() : new Usuario();
+	}
+
+	@Override
+	public void eliminar(Integer id) {
+		userRepo.deleteById(id);
 	}
 
 }
